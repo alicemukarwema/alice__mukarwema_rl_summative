@@ -82,10 +82,10 @@ alice__mukarwema_rl_summative/
 │   └── rendering.py             # Pygame visualization components
 ├── training/
 │   ├── dqn_training.py          # DQN (value-based) training with 10 experiments
-│   └── pg_training.py           # PPO & A2C (policy gradient) with 10 each
+│   └── pg_training.py           # PPO & REINFORCE (policy gradient) with 10 each
 ├── models/
 │   ├── dqn/                     # Saved DQN models & metrics
-│   ├── pg/                      # Saved PPO/A2C models & metrics
+│   ├── pg/                      # Saved PPO/REINFORCE models & metrics
 │   └── *.pkl                    # Model checkpoints
 ├── analysis/
 │   ├── visualizer.py            # Hyperparameter analysis & plotting
@@ -103,7 +103,7 @@ alice__mukarwema_rl_summative/
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/username/alice_mukarwema_rl_summative
+git clone https://github.com/alicemukarwema/alice_mukarwema_rl_summative
 cd alice_mukarwema_rl_summative
 ```
 
@@ -149,7 +149,7 @@ python -m training.dqn_training
 python -m training.pg_training
 ```
 - Trains 10 PPO experiments (state-of-the-art policy gradient)
-- Trains 10 A2C experiments (REINFORCE-based with baseline)
+- Trains 10 REINFORCE experiments
 - Tests: learning rate, trajectory length, batch size, entropy, gamma
 - Saves models to `models/pg/`
 - ~25-30 minutes total
@@ -230,20 +230,19 @@ python analysis/visualizer.py
 - Trajectory length 128 provides good update variance
 - Gamma 0.99 with GAE lambda 0.95 works well
 
-### A2C / REINFORCE (10 Experiments)
+### REINFORCE (10 Experiments)
 
 | Parameter | Tested Values | Notes |
 |-----------|---------------|-------|
 | Learning Rate | 1e-4, 5e-4, 1e-3 | REINFORCE step size |
 | n_steps (episode length) | 3, 5, 10 | Trajectory length |
 | Entropy Coefficient | 0.0, 0.01, 0.05 | Policy regularization |
-| Normalize Advantage | True, False | Variance reduction |
+| Gamma | 0.95, 0.99, 0.999 | Discount factor |
 
 **Key Insights:**
-- REINFORCE with baseline (A2C) more stable than vanilla
-- Lower learning rate (1e-4) beneficial due to policy-only updates
+- Required precise tuning to handle variance
 - Entropy coefficient 0.01 crucial for exploration
-- Advantage normalization significantly improves stability
+- Highly sensitive to learning rate and gamma settings
 
 ## Expected Performance
 
@@ -255,7 +254,7 @@ python analysis/visualizer.py
 ### Trained Agents (Typical)
 - **DQN**: Episode Reward +100-250 | Healthy Plants: 18-22/25
 - **PPO**: Episode Reward +150-350 | Healthy Plants: 20-24/25
-- **A2C**: Episode Reward +80-200 | Healthy Plants: 16-21/25
+- **REINFORCE**: Episode Reward +80-298 | Healthy Plants: 16-21/25
 
 *Note: Performance varies based on random initialization and exploration.*
 
@@ -273,11 +272,11 @@ python analysis/visualizer.py
 - **Weaknesses**: Higher sample complexity
 - **Best For**: Complex environments, continuous learning
 
-### A2C (REINFORCE-based)
-- **Approach**: Policy gradient with value baseline
-- **Strengths**: Simple, baseline reduces variance
-- **Weaknesses**: Lower sample efficiency than PPO
-- **Best For**: Educational purposes, stable training
+### REINFORCE
+- **Approach**: Pure policy gradient with Monte Carlo returns
+- **Strengths**: Concepts are simple and direct
+- **Weaknesses**: High variance, sensitive to tuning and sparse rewards
+- **Best For**: Educational purposes and environments with clear reward signals
 
 ## Visualization Features
 
@@ -356,7 +355,7 @@ ls models/dqn/*.zip  # Check for saved models
 ### Key Papers
 1. DQN: Mnih et al. (2015) - "Human-level control through deep reinforcement learning"
 2. PPO: Schulman et al. (2017) - "Proximal Policy Optimization Algorithms"
-3. A2C: Mnih et al. (2016) - "Asynchronous Methods for Deep Reinforcement Learning"
+3. REINFORCE: Williams (1992) - "Simple statistical gradient-following algorithms for connectionist reinforcement learning"
 
 ### Agricultural Context
 - Disease spread modeling
