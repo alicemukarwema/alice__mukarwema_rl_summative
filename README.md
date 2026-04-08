@@ -69,7 +69,7 @@ Episode ends when:
 - **Disease Spread**: Spreads to neighboring plants (4-connectivity)
 - **Natural Progression**: Health declines ~0.5 per step without treatment
 - **Infection Impact**: Accelerates health decline when infected
-- **Weather Effects**: Humidity and rainfall increase spread probability
+- **Weather Effects**: Humidity and rainfall increase the spread probability
 - **Soil Moisture**: Decreases naturally, affects disease susceptibility
 
 ## Project Structure
@@ -241,7 +241,7 @@ python analysis/visualizer.py
 
 **Key Insights:**
 - Required precise tuning to handle variance
-- Entropy coefficient 0.01 crucial for exploration
+- Entropy coefficient 0.01 is crucial for exploration
 - Highly sensitive to learning rate and gamma settings
 
 ## Expected Performance
@@ -275,7 +275,7 @@ python analysis/visualizer.py
 ### REINFORCE
 - **Approach**: Pure policy gradient with Monte Carlo returns
 - **Strengths**: Concepts are simple and direct
-- **Weaknesses**: High variance, sensitive to tuning and sparse rewards
+- **Weaknesses**: High variance, sensitive to tuning, and sparse rewards
 - **Best For**: Educational purposes and environments with clear reward signals
 
 ## Visualization Features
@@ -288,7 +288,7 @@ python analysis/visualizer.py
   - ⬜ Gray: Removed plants
 
 - **Info Panel** shows:
-  - Current step / episode
+  - Current step/episode
   - Healthy & infected plant counts
   - Average health & disease severity
   - Weather conditions (temperature, humidity, rainfall)
@@ -315,12 +315,12 @@ python analysis/visualizer.py
 ### Agent Validation
 - ✅ Models training without errors
 - ✅ Deterministic inference works (best_policy mode)
-- ✅ All 4 algorithms compatible with environment
+- ✅ All 4 algorithms are compatible with the environment
 - ✅ Hyperparameter variations tested (10 each)
 
 ## Troubleshooting
 
-### ImportError: No module named 'gymnasium'
+### ImportError: No module named 'gymnasium.'
 ```bash
 pip install gymnasium
 ```
@@ -338,7 +338,7 @@ python main.py --no-render
 ```
 
 ### Models not found when running main.py
-Ensure training completed:
+Ensure training is completed:
 ```bash
 ls models/dqn/*.zip  # Check for saved models
 ```
@@ -353,9 +353,9 @@ ls models/dqn/*.zip  # Check for saved models
 - **Matplotlib**: Analysis plotting
 
 ### Key Papers
-1. DQN: Mnih et al. (2015) - "Human-level control through deep reinforcement learning"
-2. PPO: Schulman et al. (2017) - "Proximal Policy Optimization Algorithms"
-3. REINFORCE: Williams (1992) - "Simple statistical gradient-following algorithms for connectionist reinforcement learning"
+1. DQN: Mnih et al. (2015) - "Human-level control through deep reinforcement learning."
+2. PPO: Schulman et al. (2017) - "Proximal Policy Optimization Algorithms."
+3. REINFORCE: Williams (1992) - "Simple statistical gradient-following algorithms for connectionist reinforcement learning."
 
 ### Agricultural Context
 - Disease spread modeling
@@ -375,7 +375,7 @@ ls models/dqn/*.zip  # Check for saved models
 
 **Alice Mukarwema**
 MLU Course: Advanced Reinforcement Learning
-Date: January 2026
+Date: April 2026
 
 ## License
 
@@ -384,7 +384,7 @@ MIT License - See LICENSE file for details
 ## Support
 
 For issues or questions:
-1. Check README troubleshooting section
+1. Check the README troubleshooting section
 2. Review environment/training logs
 3. Validate environment with demo_random_actions.py
 4. Check hyperparameter ranges in training scripts
